@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar — JB GARAGE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="assets/style.css" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-jb sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.php"><img src="assets/logo-garasi-jb.jpg" alt="Logo Garasi JB" /><span>JB GARAGE</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuUtama" aria-controls="menuUtama" aria-expanded="false" aria-label="Buka menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="menuUtama">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.php#beranda">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php#tentang">Tentang</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php#listing">Listing</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php#portofolio">Portofolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php#kontak">Kontak</a></li>
+        </ul>
+        <ul class="navbar-nav ms-lg-3 align-items-lg-center gap-lg-2" id="authNav"></ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <div class="card auth-card shadow-sm"><div class="card-body p-4">
+      <div class="text-center mb-3"><img src="assets/logo-garasi-jb.jpg" class="auth-logo mb-2" alt="Logo" /><h1 class="h4">Buat Akun JB GARAGE</h1></div>
+      <div id="alertErr" class="alert alert-danger d-none" role="alert"></div>
+      <form id="formReg" novalidate>
+        <div class="mb-3"><label for="nama" class="form-label">Nama Lengkap</label>
+          <input type="text" class="form-control" id="nama" minlength="3" maxlength="60" required />
+          <div class="invalid-feedback">Nama minimal 3 karakter.</div></div>
+        <div class="mb-3"><label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required />
+          <div class="invalid-feedback">Masukkan email yang valid.</div></div>
+        <div class="mb-3"><label class="form-label d-block">Daftar sebagai</label>
+          <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="role" id="rPembeli" value="pembeli" checked /><label class="form-check-label" for="rPembeli">Pembeli</label></div>
+          <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="role" id="rPenjual" value="penjual" /><label class="form-check-label" for="rPenjual">Penjual</label></div></div>
+        <div class="mb-3"><label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" autocomplete="new-password" required />
+          <div class="progress mt-2" style="height:6px"><div class="progress-bar" id="pwBar" style="width:0"></div></div>
+          <div class="form-text" id="pwHint">Minimal 8 karakter, kombinasi huruf dan angka.</div>
+          <div class="invalid-feedback" id="pwErr">Password minimal 8 karakter dan mengandung huruf serta angka.</div></div>
+        <div class="mb-3"><label for="password2" class="form-label">Konfirmasi Password</label>
+          <input type="password" class="form-control" id="password2" autocomplete="new-password" required />
+          <div class="invalid-feedback">Konfirmasi password tidak sama.</div></div>
+        <div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="setuju" required /><label class="form-check-label" for="setuju">Saya setuju dengan syarat &amp; ketentuan JB GARAGE</label>
+          <div class="invalid-feedback">Anda harus menyetujui syarat &amp; ketentuan.</div></div>
+        <button type="submit" class="btn btn-primary w-100" id="btnReg">Daftar</button>
+      </form>
+      <p class="text-center small mt-3 mb-0">Sudah punya akun? <a href="login.html">Masuk</a></p>
+    </div></div>
+  </main>
+  <footer class="py-4 mt-4"><div class="container small text-center">© 2026 JB GARAGE · Tugas Praktikum 6 — Bootstrap 5</div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/app.js"></script>
+  <script>
+
+    const form = document.getElementById('formReg'), errBox = document.getElementById('alertErr');
+    const pw = document.getElementById('password'), pw2 = document.getElementById('password2');
+    const strong = v => v.length >= 8 && /[A-Za-z]/.test(v) && /\d/.test(v);
+    function score(v){ let s=0; if(v.length>=8)s++; if(/[A-Z]/.test(v)&&/[a-z]/.test(v))s++; if(/\d/.test(v))s++; if(/[^A-Za-z0-9]/.test(v))s++; return s; }
+    pw.addEventListener('input', () => {
+      const s = score(pw.value), bar = document.getElementById('pwBar');
+      bar.style.width = (s*25)+'%'; bar.className = 'progress-bar ' + (s<=1?'bg-danger':s<=2?'bg-warning':'bg-success');
+      pw.setCustomValidity(strong(pw.value) ? '' : 'lemah'); check2();
+    });
+    function check2(){ pw2.setCustomValidity(pw2.value === pw.value ? '' : 'beda'); }
+    pw2.addEventListener('input', check2);
+    JB.currentUser().then(u => { if (u) location.replace('index.php'); });
+    form.addEventListener('submit', async e => {
+      e.preventDefault(); errBox.classList.add('d-none'); check2();
+      pw.setCustomValidity(strong(pw.value) ? '' : 'lemah');
+      form.classList.add('was-validated'); if (!form.checkValidity()) return;
+      const btn = document.getElementById('btnReg'); btn.disabled = true; btn.textContent = 'Memproses…';
+      await JB.ready;
+      const r = await JB.register({ name: nama.value, email: email.value, password: pw.value, role: form.role.value });
+      if (!r.success) { errBox.textContent = r.message || 'Registrasi gagal.'; errBox.classList.remove('d-none'); btn.disabled = false; btn.textContent = 'Daftar'; return; }
+      location.href = 'login.html?registered=1';
+    });
+  </script>
+</body>
+</html>

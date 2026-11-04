@@ -1,0 +1,76 @@
+/* JB GARAGE — kustomisasi ringan di atas Bootstrap 5 (warna mengikuti logo) */
+:root{
+  --jb-red:#9E2627; --jb-red-dark:#7A1B1C; --jb-gold:#F5C242; --jb-cyan:#3CB8C8;
+  --bs-primary:#9E2627; --bs-primary-rgb:158,38,39;
+  --bs-link-color:#9E2627; --bs-link-hover-color:#7A1B1C;
+  --bs-body-font-family:'DM Sans',system-ui,sans-serif;
+}
+body{background:#F3F4F6;color:#111827}
+h1,h2,h3,h4,h5,.navbar-brand,.stat-value{font-family:'Syne',sans-serif;font-weight:700}
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:72px}
+
+.btn-primary{--bs-btn-bg:var(--jb-red);--bs-btn-border-color:var(--jb-red);
+  --bs-btn-hover-bg:var(--jb-red-dark);--bs-btn-hover-border-color:var(--jb-red-dark);
+  --bs-btn-active-bg:var(--jb-red-dark);--bs-btn-active-border-color:var(--jb-red-dark);
+  --bs-btn-disabled-bg:var(--jb-red);--bs-btn-disabled-border-color:var(--jb-red)}
+.btn-outline-light:hover{color:var(--jb-red)}
+.form-control:focus,.form-select:focus{border-color:var(--jb-red);box-shadow:0 0 0 .2rem rgba(158,38,39,.15)}
+
+/* Navbar (warna sama dengan latar logo supaya menyatu) */
+.navbar-jb{background:var(--jb-red)}
+.navbar-jb .navbar-brand img{width:42px;height:42px;object-fit:cover;border-radius:10px}
+.navbar-jb .nav-link{font-weight:500}
+.navbar-jb .nav-link.active{color:var(--jb-gold)!important}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#111827 0%,#1F2937 100%);color:#fff;border-radius:1.25rem;overflow:hidden}
+.hero .lead{color:rgba(255,255,255,.75)}
+.hero-logo{max-width:280px;width:100%;border-radius:1.25rem;box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.badge-gold{background:var(--jb-gold);color:#111827}
+
+/* Stat & kartu */
+.stat-card{border:1px solid #E5E7EB;border-radius:1rem;position:relative;overflow:hidden}
+.stat-card .stat-icon{width:42px;height:42px;border-radius:.7rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.stat-value{font-size:1.6rem;font-weight:800}
+.ic-red{background:#FEE2E2}.ic-green{background:#DCFCE7}.ic-gold{background:#FEF3C7}.ic-cyan{background:#CFFAFE}
+.card{border-color:#E5E7EB;border-radius:1rem}
+.feature-card{transition:transform .2s,box-shadow .2s}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 .75rem 1.5rem rgba(0,0,0,.1)}
+.feature-icon{font-size:2rem}
+
+/* Tab peran */
+.nav-pills .nav-link{color:#6B7280;font-weight:600}
+.nav-pills .nav-link.active{background:var(--jb-red)}
+
+/* Tabel */
+.table thead th{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:#6B7280}
+.veh-emoji{width:38px;height:38px;border-radius:.6rem;background:#F3F4F6;display:inline-flex;align-items:center;justify-content:center;font-size:1.2rem}
+
+.section-title{position:relative;padding-bottom:.6rem;margin-bottom:1.5rem}
+.section-title::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:2px;background:var(--jb-red)}
+.text-center .section-title::after,.section-title.text-center::after{left:50%;transform:translateX(-50%)}
+
+footer{background:#111827;color:rgba(255,255,255,.6)}
+
+/* Kartu listing kendaraan */
+.listing-card{overflow:hidden;transition:transform .2s,box-shadow .2s}
+.listing-card:hover{transform:translateY(-4px);box-shadow:0 .75rem 1.5rem rgba(0,0,0,.1)}
+.listing-img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#fff}
+.escrow-thumb{width:56px;height:56px;border-radius:.7rem;object-fit:cover;flex-shrink:0}
+
+/* ===== Fitur tambahan: auth, listing dinamis, upload ===== */
+.avatar{width:28px;height:28px;border-radius:50%;background:var(--jb-gold);color:#111827;font-weight:700;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem}
+.listing-img.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#F3F4F6,#E5E7EB);font-size:3rem;color:#6B7280}
+.listing-img.ph small{font-size:.7rem}
+.listing-card[role=button]{cursor:pointer}
+.auth-card{max-width:480px;margin:2rem auto}
+.auth-logo{width:72px;height:72px;border-radius:1rem;object-fit:cover}
+.dropzone{border:2px dashed #D1D5DB;border-radius:1rem;background:#fff;padding:1.5rem;text-align:center;cursor:pointer;transition:.15s}
+.dropzone:hover,.dropzone.drag{border-color:var(--jb-red);background:#FEF2F2}
+.preview-item{position:relative;border-radius:.75rem;overflow:hidden;border:1px solid #E5E7EB;aspect-ratio:1/1;background:#fff}
+.preview-item img{width:100%;height:100%;object-fit:cover}
+.preview-item .btn-remove{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(17,24,39,.8);color:#fff;line-height:1}
+.preview-item .tag-main{position:absolute;left:6px;bottom:6px}
+.carousel-item img{width:100%;max-height:360px;object-fit:contain;background:#F3F4F6}
+.my-thumb{width:64px;height:64px;border-radius:.6rem;object-fit:cover;flex-shrink:0;background:#F3F4F6;display:flex;align-items:center;justify-content:center;font-size:1.6rem}
